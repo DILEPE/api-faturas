@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddColumnToTransactions extends Migration
+class CreateTableEmisor extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class AddColumnToTransactions extends Migration
      */
     public function up()
     {
-        Schema::table('transactions', function (Blueprint $table) {
-            $table->date('date_start');
-            $table->date('date_stop')->nullable();
+        Schema::create('emisors', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('nit');
+            $table->timestamps();
         });
     }
 
@@ -26,9 +28,6 @@ class AddColumnToTransactions extends Migration
      */
     public function down()
     {
-        Schema::table('transactions', function (Blueprint $table) {
-            $table->dropColumn('date_start');
-            $table->date('date_stop');
-        });
+        Schema::dropIfExists('emisors');
     }
 }

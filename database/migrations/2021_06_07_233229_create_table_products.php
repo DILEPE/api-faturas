@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddColumnToBillsTable extends Migration
+class CreateTableProducts extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class AddColumnToBillsTable extends Migration
      */
     public function up()
     {
-        Schema::table('bills', function (Blueprint $table) {
-            $table->enum('status',['Anulada','Activa','Pagada'])->default($value='Activa');
+        Schema::create('products', function (Blueprint $table) {
+            $table->id();
+            $table->string('description');
+            $table->integer('value');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ class AddColumnToBillsTable extends Migration
      */
     public function down()
     {
-        Schema::table('bills', function (Blueprint $table) {
-            $table->dropColumn('status');
-        });
+        Schema::dropIfExists('products');
     }
 }
