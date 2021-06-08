@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateClientesTable extends Migration
+class CreateTableEmisor extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateClientesTable extends Migration
      */
     public function up()
     {
-        Schema::create('clients', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name',100);
-            $table->string('document',100);
-            $table->enum('type_document',['cedula','pasaporte','cedula de extranjeria']);
+        Schema::create('emisors', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('nit');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateClientesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('clients');
+        Schema::dropIfExists('emisors');
     }
 }

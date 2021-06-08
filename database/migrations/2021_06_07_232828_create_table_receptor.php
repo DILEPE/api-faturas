@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTariffsTable extends Migration
+class CreateTableReceptor extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreateTariffsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tariffs', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('value_minute');
-            $table->integer('value_hour');
-            $table->string('name',100);
-            $table->integer('discount');
-            $table->integer('condition');
-
+        Schema::create('receptors', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('nit');
             $table->timestamps();
         });
     }
@@ -32,6 +28,6 @@ class CreateTariffsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tariffs');
+        Schema::dropIfExists('receptors');
     }
 }
