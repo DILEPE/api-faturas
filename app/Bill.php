@@ -7,16 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class Bill extends Model
  {
      protected $fillable = [
-         "client_id","vehicle_id","value","description","parking_lot_id","status",
+         "emisor_id","receptor_id","subtotal","tax","total";
     
      ];
-     public function client(){
-         return $this->belongsTo('App\Client');
+     public function receptor(){
+         return $this->hasOne('App\Receptor');
      }
-     public function vehicle(){
-         return $this->belongsTo('App\Vehicle');
+     public function emisor(){
+         return $this->hasOne('App\Emisor');
      }
-     public function parkingLot(){
-         return $this->belongsTo('App\ParkingLot');
+     public function products(){
+         return $this->belongsToMany('App\Product');
      }
  }
